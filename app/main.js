@@ -1,18 +1,23 @@
 import React, { Component, PropTypes } from 'react';
 
-var router = require('react-router');
+import {
+	Router,
+	Route
+} from 'react-router';
 
-class Test extends Component {
+class App extends Component {
 
 	componentDidMount() {
-		console.log('ReactRouter', router);
+		console.log('ReactRouter', Router);
 	}
 	render() {
 		return (
-			<div>起步</div>
+			<Router>
+				
+			</Router>
 		);
 	}
 }
 
 
-export default Test;
+export default App;

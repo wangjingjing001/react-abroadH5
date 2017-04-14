@@ -1,12 +1,12 @@
-var webpack = require('webpack'),
-	webpackConfig = require('./webpack.config'),
-	webpackDevMiddleware = require("webpack-dev-middleware"),
-	webpackHotMiddleware = require('webpack-hot-middleware'),
-	compiler = webpack(webpackConfig)
-
-, express = require('express'), app = new express()
+var webpack = require('webpack')
+,	webpackConfig = require('./webpack.config')
+,	webpackDevMiddleware = require("webpack-dev-middleware")
+,	webpackHotMiddleware = require('webpack-hot-middleware')
+,	compiler = webpack(webpackConfig)
+, 	express = require('express')
 ,	http = require('http')
-,	port = 80;
+, 	app = express()
+,	port = 3001;
 
 app.use(
 	webpackDevMiddleware(compiler, {
@@ -14,29 +14,25 @@ app.use(
 		publicPath: webpackConfig.output.publicPath
 	}));
 
-app.use(webpackHotMiddleware(compiler))
+app.use(webpackHotMiddleware(compiler));
 
-
-
-// Anything else gets passed to the client app's server rendering
+// send index.html
 app.get('/', function(req, res, next) {
-	console.log(__dirname+'/index.html');
-	res.sendFile(__dirname + '/index.html')
+	
+	res.sendFile(__dirname + '/index.html');
+});
+
+//send js
+app.get('/dist/*', function(req, res, next) {
+	//推送js文件
+	res.sendFile(__dirname + req.originalUrl);
 });
 
 
-app.listen(port, '127.0.0.1', function(error) {
+app.listen(port, 'my-dev.pengyunliuxue.com', function(error) {
   if (error) {
-    console.error(error)
+    console.error('====', error);
   } else {
-    console.info("==> 🌎  Listening on port %s. ", port)
+    console.info("==> 🌎  Listening on port %s. ", port);
   }
 });
-/*const server = http.createServer(app);
-server.listen(port, 'my-dev.pengyunliuxue.com', function(err) {
-	if (err) throw err;
-
-	const addr = server.address();
-
-	console.log('Listening at http://%s:%d', addr.address, addr.port);
-});*/
