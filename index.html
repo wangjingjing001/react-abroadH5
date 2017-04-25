@@ -2,10 +2,26 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1,user-scalable=no"/>
+	<meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0, maximum-scale=1,user-scalable=no"/>
+    <link rel="stylesheet" type="text/css" href="app/css/plugins/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="app/css/plugins/add2home.css">
+    <link rel="stylesheet" type="text/css" href="app/css/common/header.css">
+    <script src="app/browserScripts/add2home.js"></script>
+    <script src="app/browserScripts/flexible_css.debug.js"></script>
+    <script src="app/browserScripts/flexible.debug.js"></script>
+	<title>鹏云留学</title>
 </head>
 <body>
 	<div id="content"></div>
 </body>
+<script>
+	if(!window.Promise) {
+	  	document.writeln('<script src="https://as.alipayobjects.com/g/component/es6-promise/3.2.2/es6-promise.min.js"'+'>'+'<'+'/'+'script>');
+	}
+</script>
 <script src="./dist/bundle.js"></script>
 </html>

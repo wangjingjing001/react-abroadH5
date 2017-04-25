@@ -2,6 +2,10 @@ var path = require('path')
 var webpack = require('webpack')
 
 module.exports = {
+    resolve: {
+        modules: ['node_modules', path.join(__dirname, '../node_modules')],
+        extensions: ['.js', '.web.js', '.json'],
+    },
     entry: [
         'webpack-hot-middleware/client', 
         path.resolve(__dirname, './index.js')
@@ -24,18 +28,27 @@ module.exports = {
             loaders: ['babel-loader'],
             exclude: /node_modules/,
                 include: __dirname
-        }, 
-        // {
-        //     test: /\.jsx?$/,
-        //     loader: 'babel',
-        //     exclude: /node_modules/,
-        //     include: __dirname
-        // },
+        },
+        { 
+            test: /\.css$/, 
+            loader: "style-loader!css-loader" 
+        },
+        {
+            test: /\.less$/,
+            loader: "style-loader!css-loader!less-loader"
+        },
         {
             test: /\.json$/,
             loaders: ['json'],
             exclude: /node_modules/,
             include: __dirname
+        },
+        {
+            test: /\.(jpe?g|png|gif|svg)$/i,
+            loaders: [
+                'file-loader?hash=sha512&digest=hex&name=[hash].[ext]',
+                'image-webpack-loader?bypassOnDebug&optimizationLevel=7&interlaced=false'
+            ]
         }]
     },
     /*externals: {

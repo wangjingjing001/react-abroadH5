@@ -1,23 +1,14 @@
 import React, { Component, PropTypes } from 'react';
 
-import {
-	Router,
-	Route
-} from 'react-router';
+var Routes = require('./routes/RouteMaps.js');
 
-class App extends Component {
-
-	componentDidMount() {
-		console.log('ReactRouter', Router);
-	}
+var Main = React.createClass({
 	render() {
 		return (
-			<Router>
-				
-			</Router>
+			<Routes/>
 		);
 	}
-}
+});
 
 
-export default App;
+module.exports = Main;
