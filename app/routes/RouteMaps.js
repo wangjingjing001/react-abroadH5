@@ -18,7 +18,10 @@ var {
 	LoginView,
 	SettingView,
 	NotFound404,
-	App
+	App,
+	RegisterView,
+	CourseView,
+	VideoView
 } = require('./../views');
 /*var RouteMaps = {
 	"/index": () => {
