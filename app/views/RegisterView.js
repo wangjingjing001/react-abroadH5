@@ -2,16 +2,18 @@ import React, { Component, PropTypes } from 'react';
 // import { InputItem } from 'antd-mobile';
 import { Link } from 'react-router';
 var {
-	Header
+	Header,
+	Back
 } = require('../components');
-var LoginView = React.createClass( {
+var RegisterView = React.createClass( {
 	getInitialState() {
 		return {
 			username: '11111',
 			password: '11111'
 		}
 	},
-	componentWillMount() {
+	componentDidMount() {
+	    console.log(this.props.location.state.cellphone);
 	},
 	textHandler() {
 		console.log('段落点击');
@@ -23,16 +25,14 @@ var LoginView = React.createClass( {
 	render() {
 		return (
 			<div>
-				<Header title="鹏云课堂-个人中心"
+				<Header title="注册"
 						leftButton={
-							<img style={{height: '0.6rem'}} src={require('../statics/back.png')}/>
+							<Back {...this.props}/>
 						}/>
-			    <button onClick={this.handleSubmit}>submit</button>
-				<p onClick={this.textHandler}>{this.state.username}</p>
-				<p>{this.state.password}</p>
+			    <button style={{fontSize: '0.45rem'}} onClick={this.handleSubmit}>注册</button>
 			</div>
 		);
 	}
 })
 
-module.exports = LoginView;
+module.exports = RegisterView;

@@ -8,7 +8,6 @@ import {
 
 var Header = React.createClass({
 	render() {
-		console.log(this.props.history);
 		return (
 			<div className="head-wrap">
 	            <div className="head-left-button">
