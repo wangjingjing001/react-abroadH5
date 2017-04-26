@@ -1,0 +1,22 @@
+.head-wrap {
+	display: flex;
+	flex-direction: row;
+	border-bottom: 1px solid #d3d3d3;
+	height: 1.4rem;
+	padding: 0.3rem;
+}
+.head-left-button {
+	width: 10%;
+}
+.head-title {
+	width: 80%;
+	text-align: center;
+	align-self: center;
+	font-size: .45rem;
+    height: .7rem;
+    overflow: hidden;
+    color: #7e7e7e;
+}
+.head-right-button {
+	width: 10%;
+}
