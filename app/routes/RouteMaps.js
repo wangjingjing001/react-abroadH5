@@ -66,10 +66,14 @@ var Routes = React.createClass({
 			<Router history={hashHistory}>
 				<Route path="/" component={App}>
 					<IndexRoute component={LoginView}/>
+					<Route path="register" component={RegisterView}/>
 				</Route>
 				<Route path="/main" component={App}>
 			      	<IndexRoute component={IndexView}/>
 			      	<Route path="setting" component={SettingView}/>
+			      	<Route path="course" component={CourseView}>
+			      		<Route pathe="/video/:id/:name" component={VideoView}/>
+			      	</Route>
 				</Route>
 
 			</Router>	

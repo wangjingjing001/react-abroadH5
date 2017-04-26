@@ -2,9 +2,7 @@ import React, { Component, PropTypes } from 'react';
 var {
 	Header
 } = require('../components');
-var {
-	LoginView
-} = require('./');
+
 var SettingView = React.createClass({
 	handleNav() {
 
@@ -13,7 +11,6 @@ var SettingView = React.createClass({
 		this.props.history.pushState(null, '/');
 	},
 	render() {
-		LoginView.open();
 		return (
 			<div>
 				<Header title="鹏云留学-个人中心"
