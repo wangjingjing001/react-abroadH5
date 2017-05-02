@@ -1,7 +1,7 @@
 module.exports = {
 	get Header() { return require('./common/header.js');},
 	get Back() { return require('./common/back.js');},
-	get Nav() { return require('./common/nav.js');}
+	get Nav() { return require('./common/nav.js');},
 	get VerifyButton() { return require('./pages/login/verifyButton.js');},
 	get NetConfig() { return require('./common/netConfig.js');},
 	get CustomFetch() { return require('./common/customFetch.js');},
