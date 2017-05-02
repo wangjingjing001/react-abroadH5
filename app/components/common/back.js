@@ -6,7 +6,7 @@ import {
 	Link
 } from 'react-router';
 
-var Header = React.createClass({
+var Back = React.createClass({
 	_back() {
 		if (typeof this.props.onClick == 'function') {
 			this.props.onClick();
@@ -20,4 +20,4 @@ var Header = React.createClass({
 		);
 	}
 });
-module.exports = Header;
+module.exports = Back;
