@@ -18,7 +18,8 @@ var SplitView = React.createClass({
 	_titleHandler(index) {
 		this.setState({
 			activeTitle: index
-		})
+		});
+		this.props.clickHandler && this.props.clickHandler(index);
 	},
 	render() {
 		return (
@@ -59,25 +60,48 @@ var LoginView = React.createClass( {
 			code: '',
 			verifyCode: '',
 			picCode: NetConfig.api_server + '/h5api/user/picIdentityCode?type=1&updata=' + Math.random(),
-			verifyCodeDisabled: true
+			verifyCodeDisabled: true,
+			activeIndex: 0
 		}
 	},
 	componentWillMount() {
-		console.log(this)
+
+	},
+	contextTypes: {
+		router: React.PropTypes.object,
+		showPopUp: React.PropTypes.func
 	},
 	_userNameInput(e) {
 		this.setState({
-			[e.target.name]:e.target.value,
-			verifyCodeDisabled: false
+			[e.target.name]: e.target.value,
+		}, () => {
+			var {
+				username,
+				code 
+			} = this.state;
+			if (username == '13146654647' && code) {
+				this.setState({
+					verifyCodeDisabled: false
+				});
+			} else {
+				this.setState({
+					verifyCodeDisabled: true
+				});
+			}
 		});
+		
 	},
 	handleSubmit() {
-		this.props.router.push('/main/video/asd/13146654647');
-		// console.log(this.context.history)
+		this.context.router.push('/main/video/asd/13146654647');
 	},
 	_clearHandler(type) {
 		this.setState({
 			[type]: ''
+		});
+	},
+	_clickHandler(activeIndex) {
+		this.setState({
+			activeIndex
 		})
 	},
 	_reloadPicCode() {
@@ -86,7 +110,17 @@ var LoginView = React.createClass( {
 		});
 	},
 	_getVerifyCode(){
-
+		var postData = {
+			api: '/h5api/user/loginSendMessage',
+			type: 'post',
+			params: {
+				mpNumber: this.state.username,
+				picIdentityCode: this.state.code,
+			}
+		}
+		CustomFetch(postData, (res) => {
+			console.log(res);
+		})
 	},
 	render() {
 		return (
@@ -99,11 +133,11 @@ var LoginView = React.createClass( {
 							<Link style={styles.registerBtn} to={{pathname:'/register', state: {cellphone: '13146654647'}}}>注册</Link>
 						}/>
 				<div style={{width: '84%', margin: '0 auto'}}>
-					<SplitView sliders={['手机号快捷登录', '账号密码登录']}>
+					<SplitView sliders={['手机号快捷登录', '账号密码登录']} clickHandler={this._clickHandler}>
 						<div style={styles.fastLoginWrap}>
 							<div style={styles.loginItem}>
 								<img style={styles.loginItemImg} src={require('../statics/login/phone.png')}/>
-								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username} onChange={this._userNameInput}/>
+								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username.value} onChange={this._userNameInput}/>
 								{this.state.username && <img style={styles.clearBtn} src={require('../statics/login/x.png')} onClick={() => {this._clearHandler('username')}}/>}
 							</div>
 							<div style={styles.line}></div>
@@ -122,7 +156,7 @@ var LoginView = React.createClass( {
 						<div style={styles.fastLoginWrap}>
 							<div style={styles.loginItem}>
 								<img style={styles.loginItemImg} src={require('../statics/login/user.png')}/>
-								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username} onChange={this._userNameInput}/>
+								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username.value} onChange={this._userNameInput}/>
 								{this.state.username && <img style={styles.clearBtn} src={require('../statics/login/x.png')} onClick={() => {this._clearHandler('username')}}/>}
 							</div>
 							<div style={styles.line}></div>
@@ -134,9 +168,8 @@ var LoginView = React.createClass( {
 						</div>
 					</SplitView>
 				</div>
+			    <div style={styles.submit} onClick={this.handleSubmit}>登录</div>
 				
-			    <button onClick={this.handleSubmit}>submit</button>
-				<p style={{height: '1rem', backgroundColor: 'red', textAlign: 'center', lineHeight: '1rem'}}>{this.state.password}</p>
 			</div>
 		);
 	}
@@ -206,7 +239,19 @@ var styles = {
 	},
 	clearBtn: {
 		width 			: '0.28rem'
+	},
+	submit: {
+		width 			: '84%',
+		backgroundColor : '#d9534f',
+		fontSize		: '0.6rem',
+		color 			: '#fff',
+		margin 			: '0 auto',
+		marginTop		: '0.6rem',
+		textAlign		: 'center',
+		lineheight		: '1.5',
+		padding 		: '10px 0',
+ 		border 			: 'none'
 	}
 }
 
-module.exports = withRouter(LoginView);
+module.exports = LoginView;

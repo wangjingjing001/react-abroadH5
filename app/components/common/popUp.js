@@ -10,7 +10,7 @@ var PopUp = React.createClass({
 	
 	render() {
 		return (
-			<p>toast</p>
+			<p>popUp.js</p>
 		);
 	}
 });
