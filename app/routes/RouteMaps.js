@@ -5,7 +5,8 @@ import {
 	Route,
 	useRouterHistory,
 	IndexRoute,
-	hashHistory
+	hashHistory,
+	withRouter
 } from 'react-router';
 
 import {

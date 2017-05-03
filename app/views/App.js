@@ -3,16 +3,27 @@ import React, {
 } from 'react';
 
 import {
-	Link
+	withRouter
 } from 'react-router';
-
+var {
+	Toast,
+	PopUp
+} = require('../components');
 var App = React.createClass({
+	getChildContext() {
+	    return {
+	      toast: Toast,
+	      showPopUp: PopUp,
+	      location: this.props.location
+	    }
+	},
+	childContextTypes:{
+	    toast: React.PropTypes.func,
+	    showPopUp: React.PropTypes.func,
+	    location: React.PropTypes.object
+	},
 	render() {
-		return (
-			<div>
-				{this.props.children}
-			</div>
-		);
+		return this.props.children;
 	}
 });
-module.exports = App;
+module.exports = withRouter(App);

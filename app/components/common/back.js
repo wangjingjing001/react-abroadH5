@@ -7,11 +7,14 @@ import {
 } from 'react-router';
 
 var Back = React.createClass({
+	contextTypes: {
+		router: React.PropTypes.object
+	},
 	_back() {
 		if (typeof this.props.onClick == 'function') {
 			this.props.onClick();
 		} else {
-			this.props.history.goBack();
+			this.context.router.goBack();
 		}
 	},
 	render() {

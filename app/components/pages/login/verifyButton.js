@@ -7,7 +7,7 @@ import {
 } from 'react-router';
 var maxSecond = 60;
 var tid;
-var cunSecond;//当前剩余时间
+var cunSecond = 0;//当前剩余时间
 
 var VerifyButton = React.createClass({
 	getInitialState() {
@@ -17,7 +17,7 @@ var VerifyButton = React.createClass({
 		}
 	},
 	componentWillReceiveProps(nextProps) {
-		this.setState({
+		cunSecond == 0 && this.setState({
 			disabled: nextProps.disabled//当父组件传来disabled的时候，用本地的state来维护
 		});
 	},

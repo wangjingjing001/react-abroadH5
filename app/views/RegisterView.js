@@ -13,13 +13,19 @@ var RegisterView = React.createClass( {
 		}
 	},
 	componentDidMount() {
-	    console.log(this.props.location.state.cellphone);
+		// console.log(this.context.location);
+		// console.log(this.props.location);
 	},
+	contextTypes: {
+        router: React.PropTypes.object,
+        history: React.PropTypes.object,
+        location: React.PropTypes.object
+    },
 	textHandler() {
 		console.log('段落点击');
 	},
 	handleSubmit() {
-		this.props.history.pushState(null, '/main/setting');
+		this.context.router.push('/main/setting');
 		// console.log(this.context.history)
 	},
 	render() {
