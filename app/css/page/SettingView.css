@@ -1,12 +1,46 @@
 .userpage{
 	width: 10rem;
 	height: 2.96875rem;
-	background:#009696;
-	line-height: 2.96875rem;
+	background: #009696;
 }
 .userDefault{
 	width: 1.875rem;
-	border:0.078rem solid #e5e5e5;
+	border: 0.078rem solid #e5e5e5;
 	border-radius: 50%;
-	margin:0 0.6875rem 0 0.515625rem;
+	margin: 0.6rem 0.6875rem 0 0.515625rem;
+}
+.group{
+	margin-top: 0.6rem;
+}
+
+.mobile{
+	font-size: 0.5rem;
+	line-height: 0.5rem;
+	color: white;
+	margin-bottom: 0.1rem;
+}
+.logined button{
+	background:rgba(0,0,0,.1);
+	border-radius: 20rem;
+	border:none;
+	color: white;
+	font-size: 0.35rem;
+	/*padding:0.18rem;*/
+	padding:0.08rem 0.2rem;
+	margin:0 0.15rem;
+}
+.logined button span{
+	margin-left: 0.1rem;
+}
+.contentList{
+	padding:0 0.46875rem;
+}
+.contentList li{
+	border-bottom: 0.06rem solid #efefef;
+}
+.contentList li>*{
+	float: left;
+.itemIcon{
+	width: 0.8rem;
+	height: 0.7rem;
 }

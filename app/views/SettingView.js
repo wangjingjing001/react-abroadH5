@@ -4,13 +4,15 @@ import {
 } from 'react-router'
 var {
 	Header,
-	Nav
+	Nav,
+	Back
 } = require('../components');
 
 var SettingView = React.createClass({
 	getInitialState() {
 		return {
-			isShow: false
+			isShow: false,
+			isLogin: false,
 		}
 	},
 	handleNav() {
@@ -24,34 +26,51 @@ var SettingView = React.createClass({
 	handleRegister() {
 		this.props.history.pushState(null, '/register');
 	},
-	render() {
-		return (
-			<div>
-				<Header title="鹏云留学-个人中心"
-						leftButton={
-							<img style={{height: '0.875rem'}} src={require('../statics/back.png')} onClick={this.handleNav}/>
-						}
-						rightButton={
-							<img style={{height: '0.875rem'}} src={require('../statics/nav.png')} onClick={this.handleNav}/>
-						}/>
+	isLogin() {
+		if(this.state.isLogin){
+			return (
 				<div className="userpage">
-					<img className='userDefault' src={require('../statics/default.png')} />
-					<div className='btn-group'>
+					<img className='userDefault' src={require('../statics/center/default.png')} />
+					<div className='btn-group group logined'>
+						<div className='mobile'>13212121212</div>
+						<button className=''>英国<span className='glyphicon glyphicon-pencil'></span></button>
+						<button className=''>学士<span className='glyphicon glyphicon-pencil'></span></button>
+					</div>
+				</div>
+			);
+		}else{
+			return (
+				<div className="userpage">
+					<img className='userDefault' src={require('../statics/center/default.png')} />
+					<div className='btn-group group'>
 						<button className='btn btn-default' onClick={this.handleLogin}>登陆</button>
 						<button className='btn btn-default' onClick={this.handleRegister}>注册</button>
 					</div>
 				</div>
-				<Nav show={this.state.isShow} navLi={
-					<ul>
-						<a href="http://www.pengyunliuxue.com"><li><span className="glyphicon glyphicon-home"></span>首页</li></a>
-						<a href="http://www.pengyunliuxue.com"><li>留学院校库</li></a>
-						<Link to="http://www.pengyunliuxue.com"><li>留学公开课</li></Link>
-						<a href="http://www.pengyunliuxue.com"><li>问学长/问导师</li></a>
-						<Link to="http://www.pengyunliuxue.com"><li>如何学习</li></Link>
-						<Link to="/main/setting" onClick={this.handleNav}><li>个人中心</li></Link>
-						<li><Link to="/">登陆</Link>/<Link to="/register">注册</Link></li>
-					</ul>
-				}/>
+			);
+		}
+	},
+	render() {
+		return (
+			<div>
+				<Header title="鹏云留学-个人中心"
+						rightButton={
+							<img style={{height: '0.875rem'}} src={require('../statics/nav.png')} onClick={this.handleNav}/>
+						}/>
+				
+				{
+					this.isLogin()
+				}
+				<Nav show={this.state.isShow}/>
+				<ul className="contentList">
+					<li>
+						<img src={require("../statics/center/course.png")} className="itemIcon" alt="" />
+						<span>我的课程</span>
+					</li>
+					<li>b</li>
+					<li>c</li>
+					<li>d</li>
+				</ul>
 			</div>
 		);
 	}
