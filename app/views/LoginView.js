@@ -69,7 +69,8 @@ var LoginView = React.createClass( {
 	},
 	contextTypes: {
 		router: React.PropTypes.object,
-		showPopUp: React.PropTypes.func
+		showPopUp: React.PropTypes.func,
+		toast: React.PropTypes.func
 	},
 	_userNameInput(e) {
 		this.setState({
@@ -92,7 +93,20 @@ var LoginView = React.createClass( {
 		
 	},
 	handleSubmit() {
-		this.context.router.push('/main/video/asd/13146654647');
+		var postData = {
+			api: '/h5api/user/login',
+			params: { 
+				mpNumber: this.state.username, 
+				password: this.state.password 
+			}
+		}
+		CustomFetch(postData, (res) => {
+			if (res.code == 1) {
+				this.context.router.push('/main/setting');
+			} else {
+				this.context.toast(res.msg);
+			}
+		})
 	},
 	_clearHandler(type) {
 		this.setState({
@@ -137,7 +151,7 @@ var LoginView = React.createClass( {
 						<div style={styles.fastLoginWrap}>
 							<div style={styles.loginItem}>
 								<img style={styles.loginItemImg} src={require('../statics/login/phone.png')}/>
-								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username.value} onChange={this._userNameInput}/>
+								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username} onChange={this._userNameInput}/>
 								{this.state.username && <img style={styles.clearBtn} src={require('../statics/login/x.png')} onClick={() => {this._clearHandler('username')}}/>}
 							</div>
 							<div style={styles.line}></div>
@@ -156,13 +170,13 @@ var LoginView = React.createClass( {
 						<div style={styles.fastLoginWrap}>
 							<div style={styles.loginItem}>
 								<img style={styles.loginItemImg} src={require('../statics/login/user.png')}/>
-								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username.value} onChange={this._userNameInput}/>
+								<input style={styles.input} name="username" type="text" placeholder="请输入手机号" value={this.state.username} onChange={this._userNameInput}/>
 								{this.state.username && <img style={styles.clearBtn} src={require('../statics/login/x.png')} onClick={() => {this._clearHandler('username')}}/>}
 							</div>
 							<div style={styles.line}></div>
 							<div style={styles.loginItem}>
 								<img style={styles.loginItemImg} src={require('../statics/login/lock.png')}/>
-								<input style={styles.input} name="password" type="text" placeholder="请输入密码" onChange={this._userNameInput}/>
+								<input style={styles.input} name="password" type="password" value={this.state.password} placeholder="请输入密码" onChange={this._userNameInput}/>
 								{this.state.password && <img style={styles.clearBtn} src={require('../statics/login/x.png')} onClick={() => {this._clearHandler('password')}}/>}
 							</div>
 						</div>

@@ -17,7 +17,7 @@ var Log = {
         }
     },
     use: function ( api, data, resp ) {
-        if ( resp.code == 0 ) {
+        if ( resp.code == 1 ) {
             this.info( api, data, resp );
         } else {
             this.error( api, data, resp );
