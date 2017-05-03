@@ -1,6 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 // import { InputItem } from 'antd-mobile';
-import { Link } from 'react-router';
+import { Link, withRouter } from 'react-router';
 var {
 	Header,
 	Back,
@@ -72,7 +72,7 @@ var LoginView = React.createClass( {
 		});
 	},
 	handleSubmit() {
-		this.props.history.pushState(null, '/main/setting');
+		this.props.router.push('/main/video/asd/13146654647');
 		// console.log(this.context.history)
 	},
 	_clearHandler(type) {
@@ -209,4 +209,4 @@ var styles = {
 	}
 }
 
-module.exports = LoginView;
+module.exports = withRouter(LoginView);
