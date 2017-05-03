@@ -12,8 +12,8 @@ var {
 var App = React.createClass({
 	getChildContext() {
 	    return {
-	      toast: Toast,
-	      showPopUp: PopUp,
+	      toast: Toast.toast,
+	      showPopUp: PopUp.showPopUp,
 	      location: this.props.location
 	    }
 	},
@@ -23,7 +23,12 @@ var App = React.createClass({
 	    location: React.PropTypes.object
 	},
 	render() {
-		return this.props.children;
+		return (
+			<div>
+				{this.props.children}
+				<Toast/>
+			</div>
+		)
 	}
 });
 module.exports = withRouter(App);

@@ -1,4 +1,4 @@
-import React, {
+/*import React, {
 	Component,
 	PropTypes
 } from 'react';
@@ -21,4 +21,4 @@ class Greeting extends React.Component {
 	}
 }
 
-export default Greeting;
+export default Greeting;*/
