@@ -42,21 +42,17 @@ var Toast = React.createClass({
 				innerText: '',
 				style: 'infoContainer animated bounceOut'
 			});
-		}, 2000);
+		}, 1500);
 	},
 	render() {
 		return (
-			<div className={this.state.style}>
-				<p style={styles.innerText}>{this.state.innerText}</p>
+			<div className={this.state.innerText ? 'toastWrap' : ''}>
+				<p className={this.state.style}>{this.state.innerText}</p>
 			</div>
 		);
 	}
 });
 var styles = {
-	innerText:{
-		fontSize: '0.5rem',
-		color: '#fff',
-		alignSelf: 'center',
-	}
+	
 }
 module.exports = Toast;
