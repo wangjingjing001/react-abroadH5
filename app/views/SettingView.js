@@ -92,16 +92,14 @@ var SettingView = React.createClass({
 		// 		this.state.courseCount = res.data.courseCount;
 		// 		this.state.serviceCount = res.data.serviceCount;
 		// 	}else{
-		// 		return false
+		// 		// return false
 		// 	}
 		// })
-		// var postData = {
+		// CustomFetch({
 		// 	api: '/h5api/user/getUserMpNumber',
-		// 	type: 'post',
-		// 	params: {}
-		// }
-		// CustomFetch(postData, (res) => {
-		// 	console.log(res);
+		// 	type: 'get'
+		// }, (res) => {
+		// 	console.log('res', res);
 		// })
 	},
 	render() {

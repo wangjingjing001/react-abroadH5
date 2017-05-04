@@ -9,4 +9,5 @@ module.exports = {
 	get Toast() { return require('./common/toast.js');},
 	get TipsDialog() { return require('./common/tipsDialog.js');},
 	get ItemList() { return require('./common/itemList.js');},
+	get Test() { return require('./common/test.js');},
 };
