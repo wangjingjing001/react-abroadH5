@@ -10,33 +10,36 @@ var Nav = React.createClass({
 	getInitialState() {
 		return {
 			isShow: false,
-			isLogin: true
 		}
 	},
 	componentWillReceiveProps(nextProps) {
-		this.setState({
-			isShow: nextProps.show
-		})
-	},
-	shoulComponentWillUpdate(nextState, nextProps) {
-		if (this.props.show !== nextProps.show) {
-			return false;
+		if (nextProps.show != this.props.show) {
+			this.navHide();
 		}
-		return true;
 	},
 	navHide() {
 		this.setState ({
 			isShow: !this.state.isShow
-		})
+		});
+	},
+	contextTypes: {
+		router: React.PropTypes.object,
+		toast: React.PropTypes.func
+	},
+	clearLogin() {
+		this.navHide();
+		this.props.clearHandler && this.props.clearHandler();
 	},
 	isLogin(){
-		if(this.state.isLogin){
-			return <div className='navlastList'><Link to="/main/setting" onClick={this.handleNav}>13212121212</Link> ｜ <Link to="/">退出</Link></div>
-		}else{
-			return <div className='navlastList'><Link to="/">登陆</Link> / <Link to="/register">注册</Link></div>
-		}
+		return (this.props.isLogin) ? (<div className='navlastList'>
+											<Link to="/main/setting" onClick={this.navHide}>13212121212</Link> ｜ <Link onClick={this.clearLogin} >退出</Link>
+									   </div>) 
+									: (<div className='navlastList'>
+									  		<Link to="/">登陆</Link> / <Link to="/register">注册</Link>
+									   </div>)
 	},
 	render() {
+
 		if (this.state.isShow) {
 			return (
 				<div className="mask" onClick={this.navHide}>
@@ -47,7 +50,7 @@ var Nav = React.createClass({
 							<li><Link to="http://www.pengyunliuxue.com"><span className="glyphicon glyphicon-film" style={{fontSize:'0.6rem',width:'0.9rem'}}></span>留学公开课</Link></li>
 							<li><a href="http://www.pengyunliuxue.com"><span className="glyphicon glyphicon-education" style={{fontSize:'0.6rem',width:'0.9rem'}}></span>问学长/问导师</a></li>
 							<li><Link to="http://www.pengyunliuxue.com"><span className="glyphicon glyphicon-question-sign" style={{fontSize:'0.6rem',width:'0.9rem'}}></span>如何学习</Link></li>
-							<li><Link to="/main/setting" onClick={this.handleNav}><span className="glyphicon glyphicon-user" style={{fontSize:'0.6rem',width:'0.9rem'}}></span>个人中心</Link></li>
+							<li><Link to="/main/setting" onClick={this.navHide}><span className="glyphicon glyphicon-user" style={{fontSize:'0.6rem',width:'0.9rem'}}></span>个人中心</Link></li>
 						</ul>
 		                {
 		                	this.isLogin()

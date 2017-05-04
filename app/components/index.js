@@ -7,4 +7,6 @@ module.exports = {
 	get CustomFetch() { return require('./common/customFetch.js');},
 	get PopUp() { return require('./common/popUp.js');},
 	get Toast() { return require('./common/toast.js');},
+	get TipsDialog() { return require('./common/tipsDialog.js');},
+	get ItemList() { return require('./common/itemList.js');},
 };

@@ -1,3 +1,7 @@
+import {
+    browserHistory,
+    hashHistory
+} from 'react-router';
 //debug,打印信息
 var Log = {
     info: function ( api, data, resp ) {
@@ -17,7 +21,7 @@ var Log = {
         }
     },
     use: function ( api, data, resp ) {
-        if ( resp.code == 0 ) {
+        if ( resp.code == 1 ) {
             this.info( api, data, resp );
         } else {
             this.error( api, data, resp );
@@ -25,8 +29,10 @@ var Log = {
     }
 };
 var {
-	NetConfig
+	NetConfig,
+    Toast
 } = require('../');
+
 
 /*错误信息*/
 var _errorType = {
@@ -64,7 +70,7 @@ var CustomFetch = (reqData, success, error) => {
 	var type = reqData.type || 'post';
 	var url = NetConfig.api_server + reqData.api;
 	if (type.toUpperCase() == 'GET') {
-		url = url + '?';
+		url = url + '?apikey=a0f7127a018342a38d00937af0355c25&';
 		//将页面传的json对象转化成params，叠加至url后面。
 		for (var name in inputData) {
             url += name + '=' + inputData[name] + '&';
@@ -75,14 +81,25 @@ var CustomFetch = (reqData, success, error) => {
 		inputData.apikey = 'a0f7127a018342a38d00937af0355c25';
 		header['Content-Type'] = 'application/json';
 	}
-	$.ajax({
+    var postData = {
         type    : type.toUpperCase(),
         url     : url,
-        headers : header,
-        data    : JSON.stringify(inputData),
-    }).done(function ( data, textStatus, jqXHR ) {
+        headers : header
+    }
+    if (type.toUpperCase() == 'POST') {
+        postData.data = JSON.stringify(inputData);
+    }
+	$.ajax(postData).done(function ( data, textStatus, jqXHR ) {
         Log && Log.use( reqData.api, inputData, data );
         if ( typeof success === 'function' ) {
+            if (data.code == 503) {
+                Toast.toast(data.msg);
+                localStorage.setItem('login', false);
+                localStorage.setItem('cellphone', '');
+                setTimeout(() => {
+                    hashHistory.replace('/');
+                }, 2000);
+            }
             success( data, reqData.api, inputData );
         }
     }).fail(function ( jqXHR, textStatus, errorThrown ) {
@@ -92,6 +109,6 @@ var CustomFetch = (reqData, success, error) => {
             error( jqXHR, textStatus, errorThrown,error_msg );
         }
     });
-}
+};
 
 module.exports = CustomFetch;

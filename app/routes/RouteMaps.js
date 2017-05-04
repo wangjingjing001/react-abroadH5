@@ -5,7 +5,9 @@ import {
 	Route,
 	useRouterHistory,
 	IndexRoute,
-	hashHistory
+	hashHistory,
+	browserHistory,
+	withRouter
 } from 'react-router';
 
 import {
@@ -74,9 +76,8 @@ var Routes = React.createClass({
 				<Route path="/main" component={App}>
 			      	<IndexRoute component={IndexView}/>
 			      	<Route path="setting" component={SettingView}/>
-			      	<Route path="course" component={CourseView}>
-			      		<Route pathe="/video/:id/:name" component={VideoView}/>
-			      	</Route>
+			      	<Route path="course" component={CourseView}/>
+			      	<Route path="video/:id/:name" component={VideoView}/>
 				</Route>
 
 			</Router>	
