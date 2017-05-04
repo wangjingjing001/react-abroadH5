@@ -6,7 +6,8 @@ var {
 	Back,
 	VerifyButton,
 	CustomFetch,
-	NetConfig
+	NetConfig,
+	Test,
 } = require('../components');
 
 var SplitView = React.createClass({
@@ -90,25 +91,28 @@ var LoginView = React.createClass( {
 				});
 			}
 		});
-		
 	},
 	handleSubmit() {
-		var postData = {
-			api: '/h5api/user/login',
-			params: { 
-				mpNumber: this.state.username, 
-				password: this.state.password 
+		if(Test.validate('13212','asdf').code !== '00000'){
+			this.context.toast(Test.validate('13212','a').errorMsg);
+		}else{		
+			var postData = {
+				api: '/h5api/user/login',
+				params: { 
+					mpNumber: this.state.username, 
+					password: this.state.password 
+				}
 			}
+			CustomFetch(postData, (res) => {
+				if (res.code == 1) {
+					localStorage.setItem('login', true);
+					localStorage.setItem('cellphone', this.state.username);
+					this.context.router.push('/main/setting');
+				} else {
+					this.context.toast(res.msg);
+				}
+			})
 		}
-		CustomFetch(postData, (res) => {
-			if (res.code == 1) {
-				localStorage.setItem('login', true);
-				localStorage.setItem('cellphone', this.state.username);
-				this.context.router.push('/main/setting');
-			} else {
-				this.context.toast(res.msg);
-			}
-		})
 	},
 	_clearHandler(type) {
 		this.setState({
