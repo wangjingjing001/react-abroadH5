@@ -6,10 +6,11 @@
 	padding: 0.3rem;
 }
 .head-left-button {
-	// width: 10%;
+	/*width: 10%;*/
 }
 .head-title {
-	width: 80%;
+	/*width: 75%;*/
+	flex: 1;
 	text-align: center;
 	align-self: center;
 	font-size: .45rem;
@@ -18,5 +19,6 @@
     color: #7e7e7e;
 }
 .head-right-button {
-	// width: 10%;
+	/*width: 15%;*/
+	text-align: center;
 }
