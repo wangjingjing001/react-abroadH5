@@ -102,6 +102,8 @@ var LoginView = React.createClass( {
 		}
 		CustomFetch(postData, (res) => {
 			if (res.code == 1) {
+				localStorage.setItem('login', true);
+				localStorage.setItem('cellphone', this.state.username);
 				this.context.router.push('/main/setting');
 			} else {
 				this.context.toast(res.msg);

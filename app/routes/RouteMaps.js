@@ -6,6 +6,7 @@ import {
 	useRouterHistory,
 	IndexRoute,
 	hashHistory,
+	browserHistory,
 	withRouter
 } from 'react-router';
 
