@@ -63,7 +63,7 @@ var styles = {
 		padding 		: '6px 10px',
 		color 			: '#fff',
 		textAlign		: 'center',
-		width			: '4rem'
+		width			: '4.5rem'
 	}
 }
 module.exports = VerifyButton;
