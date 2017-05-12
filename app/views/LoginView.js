@@ -230,7 +230,7 @@ var LoginView = React.createClass( {
 							<Back {...this.props}/>
 						}
 						rightButton={
-							<Link style={styles.registerBtn} to={{pathname:'/register', state: {cellphone: '13146654647'}}}>注册</Link>
+							<Link style={styles.registerBtn} to={{pathname:'/register', state: {cellphone: username}}}>注册</Link>
 						}/>
 				<div style={{width: '84%', margin: '0 auto'}}>
 					<SplitView sliders={['手机号快捷登录', '账号密码登录']} clickHandler={this._clickHandler}>
@@ -268,7 +268,10 @@ var LoginView = React.createClass( {
 						</div>
 					</SplitView>
 				</div>
-			    <div style={submitStyle} onClick={this.handleSubmit}>登录</div>
+				<div style={styles.loginWrap}>
+			    	<div style={submitStyle} onClick={this.handleSubmit}>登录</div>
+			    	<img style={styles.logo} src={require('../statics/login/logo.png')}/>
+			    </div>
 			</div>
 		);
 	}
@@ -350,6 +353,18 @@ var styles = {
 		lineheight		: '1.5',
 		padding 		: '10px 0',
  		border 			: 'none'
+	},
+	loginWrap: {
+		display			: 'flex',
+		flexDirection	: 'column',
+		justifyContent	: 'center',
+		alignItems		: 'center'
+	},
+	logo: {
+		alignSelf		: 'center',
+		width			: '5rem',
+		position		: 'absolute',
+		bottom			: '2rem'
 	}
 }
 
