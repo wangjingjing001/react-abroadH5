@@ -79,12 +79,15 @@ var CustomFetch = (reqData, success, error) => {
         url = url.substring(0, url.length - 1);
 	} else {//POST请求
 		inputData.apikey = 'a0f7127a018342a38d00937af0355c25';
-		header['Content-Type'] = 'application/json';
 	}
+    header['Content-Type'] = 'application/json';
     var postData = {
         type    : type.toUpperCase(),
         url     : url,
-        headers : header
+        headers : header,
+        xhrFields: {
+            withCredentials: true
+        },
     }
     if (type.toUpperCase() == 'POST') {
         postData.data = JSON.stringify(inputData);
