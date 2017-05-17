@@ -9,7 +9,7 @@ import {
 var Header = React.createClass({
 	render() {
 		return (
-			<div className="head-wrap">
+			<div className="head-wrap" style={{background:'#fff'}}>
 	            <div className="head-left-button">
 	                {this.props.leftButton}
 	            </div>

@@ -31,8 +31,8 @@ var Nav = React.createClass({
 		this.props.clearHandler && this.props.clearHandler();
 	},
 	isLogin(){
-		return (this.props.isLogin) ? (<div className='navlastList'>
-											<Link to="/main/setting" onClick={this.navHide}>13212121212</Link> ｜ <Link onClick={this.clearLogin} >退出</Link>
+		return (this.props.isLogin === 'true') ? (<div className='navlastList'>
+											<Link to="/main/setting" onClick={this.navHide}>{localStorage.getItem('cellphone')}</Link> ｜ <Link onClick={this.clearLogin} >退出</Link>
 									   </div>) 
 									: (<div className='navlastList'>
 									  		<Link to="/">登陆</Link> / <Link to="/register">注册</Link>

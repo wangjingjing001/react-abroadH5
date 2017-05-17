@@ -10,4 +10,6 @@ module.exports = {
 	get TipsDialog() { return require('./common/tipsDialog.js');},
 	get ItemList() { return require('./common/itemList.js');},
 	get Test() { return require('./common/test.js');},
+	get IdentityTag() { return require('./common/identityTag.js');},
+	get WechatMask() { return require('./common/WechatMask.js');},
 };
